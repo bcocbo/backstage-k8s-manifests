@@ -6,7 +6,7 @@ metadata:
   labels:
     app: backstage
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: backstage
   ports:
