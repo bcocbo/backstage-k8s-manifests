@@ -6,7 +6,7 @@ metadata:
   labels:
     app: backstage
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: backstage
   ports:
@@ -15,27 +15,3 @@ spec:
     targetPort: 7007
 
 ---    
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: backstage-ingress
-  namespace: backstage
-  annotations:
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/load-balancer-name: a1158eea44f104787a8791e8614ebfe3-1164417482.us-east-1.elb.amazonaws.com  
-    alb.ingress.kubernetes.io/group.name: shared-alb
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-   
-  rules:
-    - host: a1158eea44f104787a8791e8614ebfe3-1164417482.us-east-1.elb.amazonaws.com
-      http:
-        paths:
-          - path: /backstage
-            pathType: Prefix
-            backend:
-              service:
-                name: backstage
-                port:
-                  number: 80
