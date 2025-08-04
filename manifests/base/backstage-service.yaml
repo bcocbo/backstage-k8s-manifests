@@ -6,12 +6,12 @@ metadata:
   labels:
     app: backstage
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: backstage
   ports:
   - name: http
-    port: 7007
+    port: 80
     targetPort: 7007
 
 ---    
