@@ -29,7 +29,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
    
   rules:
-    - host: backstage.tudominio.com
+    - host: a1158eea44f104787a8791e8614ebfe3-1164417482.us-east-1.elb.amazonaws.com
       http:
         paths:
           - path: /backstage
