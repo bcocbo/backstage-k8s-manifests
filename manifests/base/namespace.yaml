@@ -5,5 +5,12 @@ metadata:
   labels:
     name: backstage
     argocd.argoproj.io/managed-by: argocd
-
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ingress
+  labels:
+    name: ingress
+    argocd.argoproj.io/managed-by: argocd
 
