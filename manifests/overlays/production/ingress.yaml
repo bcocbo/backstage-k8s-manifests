@@ -16,7 +16,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:851725646489:certificate/b08eb77c-4d90-4a99-8e57-5a812f8f08a5
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
     
 spec:
   ingressClassName: alb
@@ -32,3 +32,24 @@ spec:
             port:
               number: 80
             namespace: backstage
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-to-backstage
+  namespace: backstage
+spec:
+  podSelector:
+    matchLabels:
+      app: backstage  # Selector para los pods del servicio backstage
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress  # Apunta al namespace 'ingress'
+      ports:
+        - protocol: TCP
+          port: 80  # Puerto del servicio backstage
