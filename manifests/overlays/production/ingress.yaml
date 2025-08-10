@@ -32,24 +32,3 @@ spec:
             port:
               number: 80
             namespace: backstage
-
----
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-ingress-to-backstage
-  namespace: backstage
-spec:
-  podSelector:
-    matchLabels:
-      app: backstage  # Selector para los pods del servicio backstage
-  policyTypes:
-    - Ingress
-  ingress:
-    - from:
-        - namespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: ingress  # Apunta al namespace 'ingress'
-      ports:
-        - protocol: TCP
-          port: 80  # Puerto del servicio backstage
