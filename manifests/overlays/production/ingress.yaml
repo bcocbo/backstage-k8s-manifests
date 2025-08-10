@@ -7,30 +7,3 @@ metadata:
     name: ingress
     argocd.argoproj.io/managed-by: argocd
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: multi-namespace-ingress
-  namespace: ingress
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:851725646489:certificate/b08eb77c-4d90-4a99-8e57-5a812f8f08a5
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
-    
-spec:
-  ingressClassName: alb
-  rules:
-  - host: apps.pocarqnube.com2
-    http:
-      paths:
-      - path: /backstage2
-        pathType: Prefix
-        backend:
-          service:
-            name: backstage
-            port:
-              number: 80
-            namespace: backstage
-      
