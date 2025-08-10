@@ -10,7 +10,7 @@ metadata:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-backstage
+  name: ingress-backstage2
   namespace: ingress
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
