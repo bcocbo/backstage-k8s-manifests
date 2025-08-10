@@ -25,7 +25,7 @@ spec:
   - host: apps.pocarqnube.com
     http:
       paths:
-      - path: /backstage
+      - path: /backstage2
         pathType: Prefix
         backend:
           service:
