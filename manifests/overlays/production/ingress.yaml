@@ -22,7 +22,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: apps.pocarqnube.com
+  - host: apps.pocarqnube.com2
     http:
       paths:
       - path: /backstage2
