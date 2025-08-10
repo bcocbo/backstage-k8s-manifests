@@ -6,11 +6,11 @@ metadata:
   labels:
     app: backstage
 spec:
-  type: ClusterIP
   selector:
     app: backstage
   ports:
   - port: 80
     targetPort: 7007
+    protocol: TCP
 
 
