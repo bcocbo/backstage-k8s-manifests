@@ -7,6 +7,8 @@ resources:
 #- ingress.yaml
 - istio-app.yaml          
 - istio-virtualservice.yaml
+- istio-ingressgateway.yaml
+
 
 
 # PATCHES QUE MODIFICAN LOS RECURSOS BASE
