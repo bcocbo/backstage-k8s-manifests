@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio
+  name: istio-base
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
     namespace: istio-system
   source:
-    repoURL: https://istio-release.helm.sh/charts
+    repoURL: https://istio-release.storage.googleapis.com/charts
     chart: base
     targetRevision: 1.23.*
     helm:
@@ -36,7 +36,7 @@ spec:
     server: https://kubernetes.default.svc
     namespace: istio-system
   source:
-    repoURL: https://istio-release.helm.sh/charts
+    repoURL: https://istio-release.storage.googleapis.com/charts
     chart: istiod
     targetRevision: 1.23.*
     helm:
@@ -59,13 +59,13 @@ spec:
     server: https://kubernetes.default.svc
     namespace: istio-system
   source:
-    repoURL: https://istio-release.helm.sh/charts
+    repoURL: https://istio-release.storage.googleapis.com/charts
     chart: gateway
     targetRevision: 1.23.*
     helm:
       values: |
         service:
-          type: LoadBalancer  # Expone vía NLB/ALB; ajusta para ALB integration si needed
+          type: LoadBalancer  # Expone vía NLB; integra con ALB si necesitas
           ports:
           - port: 80
             name: http
