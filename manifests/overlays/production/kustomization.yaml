@@ -5,7 +5,9 @@ kind: Kustomization
 resources:
 - ../../base              # REFERENCIA A LA CARPETA BASE
 #- ingress.yaml
-- istio-app.yaml           #  AÑADE EL INGRESS ESPECÍFICO DE PRODUCCIÓN
+- istio-app.yaml          
+- istio-virtualservice.yaml
+
 
 # PATCHES QUE MODIFICAN LOS RECURSOS BASE
 patchesStrategicMerge:
