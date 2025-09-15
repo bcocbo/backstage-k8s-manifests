@@ -5,9 +5,7 @@ kind: Kustomization
 resources:
 - ../../base              # REFERENCIA A LA CARPETA BASE
 #- ingress.yaml
-- istio-app.yaml          
-- istio-virtualservice.yaml
-- istio-ingressgateway.yaml
+
 
 
 

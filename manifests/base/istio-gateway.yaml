@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: gitops-gateway
+  name: gitops-gateway2
   namespace: istio-system
 spec:
   selector:

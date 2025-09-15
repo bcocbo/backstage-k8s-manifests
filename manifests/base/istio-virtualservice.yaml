@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: single-gitops-vs
+  name: gitops-vs2
   namespace: istio-system  # Movido aquí; quita el ns 'ingress' si no lo usas
 spec:
   hosts:
