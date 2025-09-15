@@ -1,0 +1,77 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  source:
+    repoURL: https://istio-release.helm.sh/charts
+    chart: base
+    targetRevision: 1.23.*
+    helm:
+      values: |
+        global:
+          istioNamespace: istio-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istiod
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  source:
+    repoURL: https://istio-release.helm.sh/charts
+    chart: istiod
+    targetRevision: 1.23.*
+    helm:
+      values: |
+        pilot:
+          autoscaleEnabled: false
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-ingressgateway
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  source:
+    repoURL: https://istio-release.helm.sh/charts
+    chart: gateway
+    targetRevision: 1.23.*
+    helm:
+      values: |
+        service:
+          type: LoadBalancer  # Expone vía NLB/ALB; ajusta para ALB integration si needed
+          ports:
+          - port: 80
+            name: http
+          - port: 443
+            name: https
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
