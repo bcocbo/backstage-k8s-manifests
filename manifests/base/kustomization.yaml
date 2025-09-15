@@ -8,10 +8,7 @@ resources:
 - backstage-deployment.yaml # Despliega Backstage
 - backstage-service.yaml   # Servicio de Backstage
 - rbac.yaml               # Permisos RBAC
-- istio-app.yaml         
-- istio-gateway.yaml  
-- istio-virtualservice.yaml
-- istio-ingressgateway.yaml
+
 secretGenerator:
 - name: postgres-secrets
   literals:
