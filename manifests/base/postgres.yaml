@@ -42,6 +42,8 @@ spec:
       labels:
         app: postgres
     spec:
+      nodeSelector:
+        karpenter.sh/nodepool: spot
       containers:
       - name: postgres
         image: postgres:15-alpine
